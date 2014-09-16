@@ -1,0 +1,22 @@
+digraph ai {
+ ranksep=0.2
+ rankdir=TB
+
+ node [shape=ellipse];
+ {"OCR"}
+ {rank = same; "OCR"; "NLP"}
+ {rank = same; "OCR"; "speech recognition"}
+ node [shape=polygon];
+ {"Text corpus"}
+ {rank = same; "Text corpus"; "Speech corpus"}
+ {rank = same; "Text corpus"; "dictionaries"}
+ "OCR"->"Text corpus"
+ "dictionaries"->"OCR"
+ "Text corpus"->"dictionaries"
+ "Speech corpus"->"speech recognition"
+ "dictionaries"->"speech recognition"
+ "dictionaries"->"NLP"
+ "Text corpus"->"NLP"
+ "Speech corpus"->"Text corpus"
+ "Text corpus"->"Speech corpus"
+} 
