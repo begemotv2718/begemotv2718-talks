@@ -1,0 +1,53 @@
+\input{common}
+
+\title{Как узнать, что внутри ядра с помощью qemu}
+
+\begin{document}
+\begin{frame}{}
+\titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Параметры компиляции}
+  \begin{center}
+    {\large Подготовка ядра:компиляция с debug символами}
+  \end{center}
+  \begin{itemize}
+    \item Взять исходники ядра с kernel.org
+    \item Развернуть исходники \texttt{tar -Jxvf linux-....tar.xz}
+    \item В директории исходников \texttt{cp arch/x86/configs/x86\_64\_defconfig ./.config}
+    \item \texttt{make menuconfig}
+    \item Kernel hacking->Compile-time checks and compiler options->Compile kernel with debug info
+    \item \texttt{make}
+    \item \texttt { qemu-system-x86\_64 -m 512M -S -gdb tcp::1234 -kernel arch/x86\_64/boot/bzImage -initrd minsystem.image}
+    \item \texttt{ gdb ./vmlinux}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Внутри gdb}
+  \begin{itemize}
+    \item \texttt{set arch i386:x86-64:intel}
+    \item \texttt{target remote localhost:1234}
+    \item \texttt{break start\_kernel}
+    \item \texttt{continue}
+    \item \texttt{disconnect}
+    \item \texttt{set arch i386:x86-64}
+    \item \texttt{target remote localhost:1234}
+    \item Нормально дебажить дальше
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Быстрый старт}
+\begin{lstlisting}
+gdb -ex "set arch i386:x86-64:intel" \
+    -ex "target remote localhost:1234" \
+    -ex "break start_kernel" \
+    -ex "continue" -ex "disconnect" \
+    -ex "set arch i386:x86-64" \
+    -ex "target remote localhost:1234" ./vmlinux
+\end{lstlisting}
+\end{frame}
+\end{document}

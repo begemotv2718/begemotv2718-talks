@@ -1,0 +1,84 @@
+\input{common}
+
+\title{seL4 - verified microkernel}
+
+\begin{document}
+\begin{frame}{}
+\titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{}
+  \begin{center}
+    {\LARGE 2017}
+  \end{center}
+
+  \vspace{5mm}
+    
+  \begin{center}
+    {\Large All systems are hackable}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{All systems are hackable?}
+  \begin{columns}
+    \column{0.45\textwidth}
+    \includegraphics[width=\textwidth]{Edward_Snowden-2.jpg}
+    \column{0.45\textwidth}
+    \includegraphics[width=\textwidth]{EFF_version_of_NSA_logo.jpg}
+  \end{columns}
+  \includegraphics[width=\textwidth]{Sauron_eye.jpg}
+\end{frame}
+
+\begin{frame}
+  \frametitle{All systems are hackable?}
+  \includegraphics[width=\textwidth]{Sauron_eye.jpg}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Verified microkernel}
+  \begin{itemize}
+      \item seL4 is L4 family microkernel
+        \begin{itemize}
+            \item IPC
+            \item Threads memory isolation
+            \item Access control
+        \end{itemize}
+      \item Microkernel code is mathematically proved to be correct
+        \begin{itemize}
+            \item No possibility of memory protection violation
+            \item No possibility of concurrent access violation
+            \item Assembly code is also verified (removed possibility of Trusting trust attack?)
+        \end{itemize}
+      \item Architectures
+         \begin{itemize}
+             \item i386,x86\_64
+             \item arm 
+         \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Who can use seL4 microkernel}
+  \begin{itemize}
+      \item CAmkES
+      \item Genode
+        \begin{itemize}
+          \item Some network stack (wifi,http server)
+          \item Audio support
+          \item Filesystems support
+        \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{References}
+  \begin{itemize}
+    \item seL4 wiki \url{https://wiki.sel4.systems/}
+    \item seL4 proofs \url{https://github.com/seL4/l4v}
+    \item irc.freenode.net seL4
+    \item Genode \url{https://genode.org}
+  \end{itemize}
+\end{frame}
+\end{document}
